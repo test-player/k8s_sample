@@ -1,0 +1,280 @@
+    1  ping www.google.com
+    2  cd /etc
+    3  cd sysconfig/
+    4  cd network-scripts/
+    5  ls
+    6  vi ifcfg-ens192 
+    7  reboot
+    8  ps -ef | grep nft
+    9  find / -name iptables*
+   10  iptables -Ln
+   11  iptables -save
+   12  iptables-save
+   13   
+   14  clear
+   15  ip addr show
+   16  yum list | grep arptables
+   17  yum list | grep iptables
+   18  yum list | grep etab
+   19  yum list | grep ebtab
+   20  ls -l /usr/sbin/iptables-legacy
+   21  services stop firewalld 
+   22  systemctl status | grep -i firewall
+   23  ssytemctl stop firewalld
+   24  ssytemctl stop firewall
+   25  sytemctl stop firewall
+   26  systemctl stop firewalld
+   27  systemctl status | grep -i firewall
+   28  yum install yum-utils device-mapper-persistent-data lvm2
+   29  yum-config-manager --add-repo   https://download.docker.com/linux/centos/docker-ce.repo
+   30  ls /etc/yum.repos.d/docker-ce.repo
+   31  yum-config-manager --add-repo  https://download.docker.com/linux/centos/docker-ce.repo
+   32  cat /etc/yum.repos.d/docker-ce.repo
+   33  yum update
+   34  yum install containerd.io-1.2.10   docker-ce-19.03.4   docker-ce-cli-19.03.4
+   35  mkdir /etc/docker
+   36  cat > /etc/docker/daemon.json <<EOF
+   37  {
+   38    "exec-opts": ["native.cgroupdriver=systemd"],
+   39    "log-driver": "json-file",
+   40    "log-opts": {
+   41      "max-size": "100m"
+   42    },
+   43    "storage-driver": "overlay2",
+   44    "storage-opts": [
+   45      "overlay2.override_kernel_check=true"
+   46    ]
+   47  }
+   48  EOF
+   49  cat /etc/docker/daemon.json
+   50  mkdir -p /etc/systemd/system/docker.service.d
+   51  ps -ef | grep docker
+   52  systemctl status | grep -i docker
+   53  systemctl daemon-reload
+   54  systemctl restart docker
+   55  systemctl status | grep -i docker
+   56  modprobe overlay
+   57  modprobe br_netfilter
+   58  cat > /etc/sysctl.d/99-kubernetes-cri.conf <<EOF
+   59  net.bridge.bridge-nf-call-iptables  = 1
+   60  net.ipv4.ip_forward                 = 1
+   61  net.bridge.bridge-nf-call-ip6tables = 1
+   62  EOF
+   63  cat /etc/sysctl.d/99-kubernetes-cri.conf
+   64  sysctl --system
+   65  yum-config-manager --add-repo=https://cbs.centos.org/repos/paas7-crio-115-release/x86_64/os/
+   66  yum install --nogpgcheck cri-o
+   67  systemctl daemon-reload
+   68  systemctl start crio
+   69  systemctl status | grep cri
+   70  cat > /etc/modules-load.d/containerd.conf <<EOF
+   71  overlay
+   72  br_netfilter
+   73  EOF
+   74  cat /etc/modules-load.d/containerd.conf
+   75  modprobe overlay
+   76  modprobe br_netfilter
+   77  cat /etc/sysctl.d/99-kubernetes-cri.conf 
+   78  sysctl --system
+   79  yum install yum-utils device-mapper-persistent-data lvm2
+   80  yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo
+   81  cat /etc/yum.repos.d/docker-ce.repo
+   82  yum update && yum install containerd.io
+   83  mkdir -p /etc/containerd
+   84  containerd config default > /etc/containerd/config.toml
+   85  cat /etc/containerd/config.toml
+   86  systemctl restart containerd
+   87  systemctl status | grep cont
+   88  systemctl status | grep contain
+   89  vi /etc/containerd/config.toml
+   90  swapoff -a
+   91  vi /etc/fstab
+   92  ip link
+   93  cat /sys/class/dmi/id/product_uuid
+   94  ls -lt /usr/sbin/iptables-legacy
+   95  ps -ef | grep dock
+   96  ps -ef | grep cri
+   97  cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+   98  [kubernetes]
+   99  name=Kubernetes
+  100  baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+  101  enabled=1
+  102  gpgcheck=1
+  103  repo_gpgcheck=1
+  104  gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+  105  EOF
+  106  cat /etc/yum.repos.d/kubernetes.repo
+  107  setenforce 0
+  108  sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+  109  cat /etc/selinux/config
+  110  yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+  111  systemctl enable --now kubelet
+  112  cat <<EOF > /etc/sysctl.d/k8s.conf
+  113  net.bridge.bridge-nf-call-ip6tables = 1
+  114  net.bridge.bridge-nf-call-iptables = 1
+  115  EOF
+  116  sysctl --system
+  117  man sysctl 
+  118  lsmod | grep br_netfilter
+  119  modprobe br_netfilter
+  120  lsmod | grep br_netfilter
+  121  ps -ef | grep kub
+  122  ps -ef | grep kube
+  123  yum list installed | grep -i kub
+  124  cat /var/lib/kubelet/kubeadm-flags.env 
+  125  cat /etc/sysconfig/kubelet 
+  126  cd /etc/sysconfig/
+  127  ls  grep -i cri
+  128  cd /etc
+  129  find . /| grep cri
+  130  find . /| grep cri | grep -i conf
+  131  cd /etc/sysconfig/crio
+  132  ls
+  133  cd /etc/sysconfig/
+  134  cat crio
+  135  grep -i cgroup *
+  136  cat /etc/sysconfig/kubelet 
+  137  vi /etc/sysconfig/kubelet
+  138  cat /etc/crio/crio.conf 
+  139  cat /etc/crio/crio.conf  | grep -i cgroup
+  140  cat /etc/sysconfig/kubelet 
+  141  vi /etc/sysconfig/kubelet
+  142  cat /etc/sysconfig/kubelet 
+  143  systemctl daemon-reload
+  144  systemctl restart kubelet
+  145  kubeadm version 
+  146  ip addr show
+  147  clear
+  148  kubeadm init
+  149  hostname
+  150  vi /etc/sysconfig/ifcfg-ens192
+  151  cd /etc/sysconfig/
+  152  ls ifcf*
+  153  ls
+  154  cd network-con
+  155  cd network-scripts/
+  156  ls if*
+  157  vi ifcfg-ens192 
+  158  cat ifcfg-ens192 
+  159  hostnamectl set-hostname k8m1.hkmaxta.com
+  160  hostname
+  161  reboot
+  162  yum -y update
+  163  hostname
+  164  vi /etc/hosts
+  165  ifconfig 
+  166  vi /etc/hosts
+  167  hostname
+  168  vi /etc/hosts
+  169  systemctl disable firewalld
+  170  systemctl stop firewalld
+  171  systemctl enable docker
+  172  vi /etc/sysconfig/network-scripts/ifcfg-ens192 
+  173  vi /etc/sysconfig/kubelet
+  174  reboot
+  175  systemctl status kubelet
+  176  cat /proc/sys/net/bridge/bridge-nf-call-iptables
+  177  sysctl net.bridge.bridge-nf-call-iptables=1
+  178  cat /proc/sys/net/bridge/bridge-nf-call-iptables
+  179  echo $(kubectl version | base64 | tr -d '\n')
+  180  echo $(kubectl version)
+  181  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+  182  kubectl get pods --all-namespaces
+  183  cat /etc/sysconfig/network-scripts/ifcfg-ens192 
+  184  exit
+  185  docker image list | grep web
+  186  docker ps | grep web
+  187  docker stop ef5b9c61e8ac
+  188  docker ps | grep web
+  189  docker images list
+  190  docker image list
+  191  docker image rm 3c222d088e5b  c1733169f088
+  192  docker image rm 3c222d088e5b  c1733169f088 --force
+  193  dokcer ps
+  194  docker ps
+  195  docker exec -it 6b339e8df1b9 /bin/bash
+  196  docker image list
+  197  docker ps 
+  198  docker stop 6b339e8df1b9 
+  199  docker image list
+  200* 
+  201  kubectl get deploymnent
+  202  kubectl get svc
+  203  kubectl get pod
+  204  docker image list
+  205  yum installed 
+  206  yum installed  list
+  207  yum list installed
+  208  yum list installed | grep -i git
+  209  pwd
+  210  ls
+  211  yum install git
+  212  git version
+  213  pwd
+  214  docker ps 
+  215  docker ps -a | grep web
+  216  docker commit 03f8c06402d5
+  217  docker image 
+  218  docker image  list
+  219   docker commit 03f8c06402d5 web-app:v1
+  220  docker image  list
+  221   docker commit 03f8c06402d5 testplayercom/web-app:v1
+  222  docker image  list
+  223  docker image rm fdf5050f1e98 6305383f7076
+  224  docker image  list
+  225  docker image rm 2d2ae8451803
+  226  docker push testplayercom/web-app
+  227  docker login
+  228  docker push testplayercom/web-app
+  229   
+  230  ls
+  231  cd an
+  232  cd andrew
+  233  ls
+  234  pwd
+  235  ls
+  236  cd *
+  237  ls
+  238  cd python_web2
+  239  ls
+  240  ls *de*
+  241  cp -p web-app-deployment.yaml web-app-deployment.yaml_notuse_fail_20200127
+  242  vi web-app-deployment.yaml
+  243  docker ps
+  244  vi web-app-deployment.yaml
+  245  kubectl get deployment
+  246  cat web-app-deployment.yaml
+  247  vi web-app-deployment.yaml
+  248  kubectl apply -f web-app-deployment.yaml
+  249  kubectl get deployment
+  250  kubectl create -f web-app-deployment.yaml
+  251  kubectl get deployment
+  252  vi web-app-deployment.yaml
+  253  kubectl get deployment
+  254  kubectl apply -f web-app-deployment.yaml
+  255  kubectl get deployment
+  256  kubectl get pod
+  257  kubectl get deployment
+  258  kubectl get pod
+  259  kubectl rm deployment web-app
+  260  kubectl delete  deployment web-app
+  261  kubectl get pod
+  262  kubectl apply -f web-app-deployment.yaml
+  263  kubectl get pod
+  264  kubectl get deployment_action.txt 
+  265  kubectl get deployment
+  266  ls *.yaml
+  267  cat web-app-svc.yaml
+  268  kubectl get svc
+  269  kubectl get pod
+  
+270  kubectl apply -f web-app-svc.yaml 
+  271  kubectl get pod
+  272  kubectl get svc
+  273  curl localhost:5000
+  274  curl localhost:32740
+  275  curl localhost:80
+  276  curl 10.104.176.113:80
+  277  curl 10.104.176.113:32740
+  278  kubectl get svc
+  279  curl 10.109.159.0:5000

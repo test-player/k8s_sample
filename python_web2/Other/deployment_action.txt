@@ -1,0 +1,120 @@
+   58  cat > /etc/sysctl.d/99-kubernetes-cri.conf <<EOF
+   63  cat /etc/sysctl.d/99-kubernetes-cri.conf
+   77  cat /etc/sysctl.d/99-kubernetes-cri.conf 
+   97  cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+   98  [kubernetes]
+  100  baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+  106  cat /etc/yum.repos.d/kubernetes.repo
+  110  yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+  111  systemctl enable --now kubelet
+  122  ps -ef | grep kube
+  124  cat /var/lib/kubelet/kubeadm-flags.env 
+  125  cat /etc/sysconfig/kubelet 
+  136  cat /etc/sysconfig/kubelet 
+  137  vi /etc/sysconfig/kubelet
+  140  cat /etc/sysconfig/kubelet 
+  141  vi /etc/sysconfig/kubelet
+  142  cat /etc/sysconfig/kubelet 
+  144  systemctl restart kubelet
+  145  kubeadm version 
+  148  kubeadm init
+  173  vi /etc/sysconfig/kubelet
+  175  # kubeadm init --cri-socket /var/run/dockershim.sock
+  176  kubeadm init --cri-socket /var/run/dockershim.sock
+  178    mkdir -p $HOME/.kube
+  179    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  180    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+  198  cd ./.kube/
+  201  kubectl apply -f [podnetwork].yaml
+  210  kubectl get nodes
+  211  kubectl get pods
+  212  kubectl get pod
+  213  kubectl get cs
+  214  kubectl get node
+  215  kubeadm token list
+  216  kubectl label node k8w1.hkmaxta.com node-role.kubernetes.io/worker=worker
+  217  kubectl get node
+  218  kubectl get cs
+  219  kubectl get pod
+  220  kubectl get node
+  221  kubectl get nodes
+  222  kubectl get node
+  228  kubectl run my-web -image nginx -port 80
+  229  kubectl run help
+  230  kubectl run my-web --image nginx -port 80
+  231  kubectl run my-web --image nginx --port 80
+  232  kubectl get pod
+  233  kubectl get svc
+  234  kubectl get container
+  235  kubectl get help
+  236  kubectl get pods
+  237  kubectl get pods container
+  238  kubectl get pods port
+  239  kubectl get pods help
+  240  kubectl describe pod my-web
+  241  kubectl describe pod my-web-5898686b74-52zdj   
+  242  kubectl get rc
+  243  kubectl expose deployment my-web -target-port=80 -type=NodePort
+  244  kubectl expose deployment my-web --target-port=80 -type=NodePort
+  245  kubectl expose deployment my-web --target-port=80 --type=NodePort
+  246  kubectl get svc my-web 
+  247  echo $kubectl get svc my-web -o go-template=’{{(index .spec.ports 0).nodePort}}’)
+  248  echo ($kubectl get svc my-web -o go-template=’{{(index .spec.ports 0).nodePort}}’)
+  249  echo $(kubectl get svc my-web -o go-template=’{{(index .spec.ports 0).nodePort}}’)
+  250  kubectl get svc my-web -o go-template='{{(index .spec.ports 0).nodePort}}'
+  251   kubectl get svc my-web
+  252  kubectl get node | get master | awk ‘{$1}’
+  253  kubectl get node | get master | awk '{$1}'
+  254  kubectl get node | get master | awk "{$1}"
+  255  kubectl get node | get master 
+  256  kubectl get nodes | get master 
+  257   kubectl get node
+  258   kubectl get node | grep master
+  263  kubectl get deployment
+  264  kubectl run help
+  265   kubectl get svc
+  267   kubectl get pods
+  269  kubectl get clusterinfo
+  270  kubectl get cluster_info
+  271  kubectl get ?
+  272  kubectl get help
+  423  kubectl get pod
+  424  kubectl delete pod my-web
+  425  kubectl delete pod my-web-5898686b74-52zdj
+  426  kubectl get pod
+  427  kubectl get rc
+  429  kubectl create -f web-app-pod.yaml 
+  432  kubectl create -f web-app-pod.yaml 
+  434  kubectl create -f web-app-pod.yaml 
+  436  kubectl create -f web-app-pod.yaml 
+  440  kubectl create -f web-app-pod.yaml 
+  443  kubectl apply  web-app-pod.yaml 
+  444  kubectl apply  -f web-app-pod.yaml 
+  447  kubectl apply  -f web-app-pod.yaml 
+  451  kubectl create namespace test-example
+  452  kubectl get namespace
+  455  kubectl apply -f  web-app-pod.yaml
+  457  kubectl apply -f  web-app-pod.yaml
+  459  kubectl apply -f  web-app-pod.yaml
+  461  kubectl apply -f  web-app-pod.yaml
+  463  kubectl apply -f  web-app-pod.yaml
+  465  kubectl apply -f  web-app-pod.yaml
+  467  kubectl apply -f  web-app-pod.yaml
+  469  kubectl apply -f  web-app-pod.yaml
+  471  kubectl apply -f  web-app-pod.yaml
+  473  kubectl apply -f  web-app-pod.yaml
+  475  kubectl apply -f  web-app-pod.yaml
+  477  kubectl apply -f  web-app-pod.yaml
+  479  kubectl apply -f  web-app-pod.yaml
+  481  kubectl apply -f  web-app-pod.yaml
+  483  kubectl apply -f  web-app-pod.yaml
+  487  kubectl apply -f web-app-svc.yaml 
+  489  kubectl apply -f web-app-svc.yaml 
+  491  kubectl get deployment
+  493  kubectl get deployment
+  494  kubectl get svc
+  495  kubectl get pod
+  499  kubectl describe web-app-svc
+  500  kubectl describe svc web-app-svc
+  501  history | grep kube
+  502  history | grep kube > deployment_action.txt

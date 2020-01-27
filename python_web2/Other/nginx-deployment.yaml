@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: load-balancer-nginx
+  name: nginx
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      name: nginx
+  template:
+    metadata:
+      labels:
+        name: nginx
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx
+        ports:
+        - containerPort: 5000
+

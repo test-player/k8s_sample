@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: load-balancer-web-app
+  name: web-app
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      name: web-app
+  template:
+    metadata:
+      labels:
+        name: web-app
+    spec:
+      containers:
+      - image: testplayercom/web-app:v2
+        name: testplayercom-web-app
+        ports:
+        - containerPort: 5000
+
