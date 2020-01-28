@@ -45,15 +45,17 @@ def init():
 @app.route("/systemlog/add", methods=['POST'])
 def add_systemlog():
     req_json = request.get_json()   
-    cursor.execute("INSERT INTO logdb.systemlog (ID, MESSAGE) VALUES (%i,%s)", (req_json['id'], req_json['message']))
+    print((req_json['id'], req_json['message']))
+
+    cursor.execute("INSERT INTO logdb.systemlog(ID, MESSAGE) VALUES (%i,%s)", (req_json['id'], req_json['message']))
     db.commit()
     return Response("Added", status=200, mimetype='application/json')
 
-@app.route('/systemlog/<uid>')
-def get_systemlog(uid):
-    hash = hashlib.sha224(str(uid)).hexdigest()
+@app.route('/systemlog/<id>')
+def get_systemlog(id):
+    hash = hashlib.sha224(str(id)).hexdigest()
     if True:
-        cursor.execute("select id, eventtime, message from logdb.systemlog where ID=" + str(uid))
+        cursor.execute("select id, eventtime, message from logdb.systemlog where ID=" + str(id))
         data = cursor.fetchone()
         if data:
             result = {"id": 0,"eventtime":startTime,"message": ""}
