@@ -1,0 +1,25 @@
+apiVersion: "v1"
+kind: Pod
+metadata:
+  name: web-app-systemlog
+  labels:
+    name: web-app-systemlog
+    app: demo
+    staging: dev
+spec:
+  containers:
+    - name: web-app-systemlog
+      image: testplayercom/web-app-systemlog:v4
+      env:       
+        - name: "MYSQL_HOST"
+          value: "10.96.129.188"
+        - name: "MYSQL_PORT"
+          value: "3306"
+        - name: "MYSQL_USER_ID"
+          value: "root"
+        - name: "MYSQL_USER_PASSWORD"
+          value: "password1234"
+      ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP                    

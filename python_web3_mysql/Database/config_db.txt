@@ -1,0 +1,24 @@
+
+create database logdb;
+
+use  logdb;
+
+
+create table systemlog (id int,eventtime timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP , message 
+
+varchar(100));
+
+insert systemlog(id, message) value (1,"Login in by May Cheng");
+
+insert systemlog(id,message) value (2,"Login in by Joe Chan");
+
+
+select * from systemlog;
+
+
+==================================
+use mysql
+SELECT host, user FROM user WHERE host = '%';;
+
+
+update user set host='%' where host='localhost';
